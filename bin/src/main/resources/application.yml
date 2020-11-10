@@ -1,12 +1,8 @@
 spring:
-  security:
-      user:
-        name: admin@isp.net
-        password: P@ssword1
-#  mvc:
-#    view:
-#      prefix: templates/WEB-INF/jsp/
-#      suffix: .jsp
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
   h2:
     console:
       enabled: true
@@ -37,6 +33,4 @@ server:
       enabled: true
       force: true
 
-recaptcha:
-  key: 6LebueAZAAAAAFgazAmnvT72omzcIvn0CCKPkSLC
-  secret: 6LebueAZAAAAALCnv6eGcSUTi6eoXfUrVK7LF-M7
+

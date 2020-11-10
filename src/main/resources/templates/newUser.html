@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <style>
+        #wrap{
+            width:530px;
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
+        }
+
+        table{
+            border:3px solid;
+            width: 600px;
+            height: 200px;
+        }
+
+        td{
+            border:1px solid lightgrey;
+            font-size: 20px;
+        }
+        #inputDec{
+            text-align:center;
+            width:200px; height:50px;
+        }
+
+        #title{
+            background-color:lightgrey;
+        }
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <br><br>
+    <b><font size="8" color="gray">Registration</font></b>
+    <br><br><br>
+    <form th:action="@{/newUser}" method="post" modelAttribute="user">
+        <table border="1" width="500" cellpadding="5" cellspacing="0">
+            <tr>
+                <td id="title">Frist Name</td>
+                <td id="inputDec">
+                    <input type="text" name="firstName" th:value="${user.firstName}" />
+                    <span th:text="${valid_firstName}"></span>
+                </td>
+                <td id="title">Last Name</td>
+                <td id="inputDec">
+                    <input type="text" name="lastName" th:value="${user.lastName}" />
+                    <span th:text="${valid_lastName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Address</td>
+                <td id="inputDec">
+                    <input type="text" name="address" th:value="${user.address}" />
+                    <span th:text="${valid_address}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Email</td>
+                <td id="inputDec">
+                    <input type="text" name="email" th:value="${user.email}" />
+                    <span th:text="${valid_email}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Password</td>
+                <td id="inputDec">
+                    <input type="password" name="password"/>
+                    <span th:text="${valid_password}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Confirm Password</td>
+                <td id="inputDec">
+                    <input type="password" name="confirmPassword"  />
+                    <span th:text="${valid_confirmPassword}"></span>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <label>
+            <input type="checkbox"  name="agree"/>
+            I agree to the terms of service
+        </label>
+        <br>
+        <span th:text="${valid_agree}"></span>
+        <br>
+        <input id="inputDec" type="submit" value="register"/>  <input id="inputDec" type="button" value="cancel">
+    </form>
+</div>
+</body>
+</html>

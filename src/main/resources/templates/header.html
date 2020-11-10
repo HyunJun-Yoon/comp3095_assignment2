@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="myheader">
+
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+        <!-- Add in CSS-->
+        <link href="../css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+
+        <header>
+            <table id="tableLeft">
+                <tr>
+                    <th><a th:href="@{/uconstruction1}">Tab1</th>
+                    <th><a th:href="@{/uconstruction2}">Tab2</th>
+                    <th><a th:href="@{/uconstruction3}">Tab3</th>
+                    <th><a th:href="@{/uconstruction4}">Tab4</th>
+                    <th>Welcome, <a th:text=${user.firstName}></th>
+                    <th><form th:action="@{/logout}" method="post">
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </th>
+                    <a href="javascript: document.logoutForm.submit()" role="menuitem"></a>
+                </tr>
+            </table>
+        </header>
+    </div>
+</body>
+</html>
