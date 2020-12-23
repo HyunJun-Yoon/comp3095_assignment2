@@ -1,0 +1,87 @@
+
+<html>
+<head>
+    <style>
+        #wrap{
+            width:530px;
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
+        }
+
+        table{
+            border:3px solid;
+            width: 600px;
+            height: 200px;
+        }
+
+        td{
+            border:1px solid lightgrey;
+            font-size: 20px;
+        }
+        #inputDec{
+            text-align:center;
+            width:200px; height:50px;
+        }
+
+        #title{
+            background-color:lightgrey;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <br><br>
+    <b><font size="8" color="gray">Registration</font></b>
+    <br><br><br>
+
+    <form action="auth/addNewUser" method="post">
+        <table>
+            <tr>
+                <td id="title">Frist Name</td>
+                <td>
+                    <input id="inputDec" type="text" name="firstName" maxlength="40">
+                </td>
+                <td id="title">Last Name</td>
+                <td>
+                    <input id="inputDec" type="text" name="lastName" maxlength="40">
+                </td>
+            </tr>
+
+            <tr>
+                <td id="title">Address</td>
+                <td>
+                    <input id="inputDec" type="text" name="address" maxlength="15">
+                </td>
+            </tr>
+
+            <tr>
+                <td id="title">Email</td>
+                <td>
+                    <input id="inputDec" type="email" name="email" maxlength="20">
+                </td>
+
+            </tr>
+            <tr>
+                <td id="title">Password</td>
+                <td>
+                    <input id="inputDec" type="password" name="password" maxlength="30">
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Confirm Password</td>
+                <td>
+                    <input id="inputDec" type="password" name="confirmPassword" maxlength="30">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <label><input type="checkbox" name="agree" maxlength="30" >I agree to the terms of service</label>
+        <br>
+        <br>
+        <input id="inputDec" type="submit" value="register"/>  <input id="inputDec" type="button" value="cancel">
+    </form>
+</div>
+</body>
+</html>

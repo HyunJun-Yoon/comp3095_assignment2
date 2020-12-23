@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html>
 <head>
     <style>
         #wrap{
@@ -28,9 +30,6 @@
         #title{
             background-color:lightgrey;
         }
-        span{
-            color: red;
-        }
     </style>
 </head>
 <body>
@@ -38,60 +37,57 @@
     <br><br>
     <b><font size="8" color="gray">Registration</font></b>
     <br><br><br>
-    <form th:action="@{/auth/newUser}" method="post" modelAttribute="user">
+    <form:form action="/addNewUser" method="post" modelAttribute="user">
         <table border="1" width="500" cellpadding="5" cellspacing="0">
             <tr>
                 <td id="title">Frist Name</td>
                 <td id="inputDec">
-                    <input type="text" name="firstName" th:value="${user.firstName}" />
-                    <span th:text="${valid_firstName}"></span>
+                    <form:input path="firstName" size="20" />
+                    <form:errors path="firstName" cssClass="error" cssStyle="color: red" />
                 </td>
                 <td id="title">Last Name</td>
                 <td id="inputDec">
-                    <input type="text" name="lastName" th:value="${user.lastName}" />
-                    <span th:text="${valid_lastName}"></span>
+                    <form:input path="lastName" size="20" />
+                    <form:errors path="lastName" cssClass="error" cssStyle="color: red" />
                 </td>
             </tr>
             <tr>
                 <td id="title">Address</td>
                 <td id="inputDec">
-                    <input type="text" name="address" th:value="${user.address}" />
-                    <span th:text="${valid_address}"></span>
+                    <form:input path="address" size="10"/>
+                    <form:errors path="address" cssClass="error" cssStyle="color: red" />
                 </td>
             </tr>
             <tr>
                 <td id="title">Email</td>
                 <td id="inputDec">
-                    <input type="text" name="email" th:value="${user.email}" />
-                    <span th:text="${valid_email}"></span>
+                    <form:input path="email" size="20" />
+                    <form:errors path="email" cssClass="error" cssStyle="color: red" />
                 </td>
             </tr>
             <tr>
                 <td id="title">Password</td>
                 <td id="inputDec">
-                    <input type="password" name="password"/>
-                    <span th:text="${valid_password}"></span>
+                    <form:password path="password" size="40" />
+                    <form:errors path="password" cssClass="error" cssStyle="color: red"  />
                 </td>
             </tr>
             <tr>
                 <td id="title">Confirm Password</td>
                 <td id="inputDec">
-                    <input type="password" name="confirmPassword"  />
-                    <span th:text="${valid_confirmPassword}"></span>
+                    <form:password path="confirmPassword" size="40" />
+                    <form:errors path="confirmPassword" cssClass="error" cssStyle="color: red"  />
                 </td>
             </tr>
         </table>
         <br>
-
-        <label>
-            <input type="checkbox"  name="agree"/>
-            I agree to the terms of service
-        </label>
+        <label><input type="checkbox" name="agree" maxlength="30" >I agree to the terms of service</label>
         <br>
-        <span th:text="${valid_agree}"></span>
+        <form:errors path="agree" cssClass="error" cssStyle="color: red" />
+        <br>
         <br>
         <input id="inputDec" type="submit" value="register"/>  <input id="inputDec" type="button" value="cancel">
-    </form>
+    </form:form>
 </div>
 </body>
 </html>

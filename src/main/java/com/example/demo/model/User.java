@@ -11,13 +11,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.xml.bind.annotation.XmlType;
+import java.util.Date;
 
 /*@Data
 @NoArgsConstructor*/
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "Please enter your First Name")
@@ -39,14 +40,18 @@ public class User {
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,12}$", message = "Password must be 6-12 characters in length and must contain at least 1 uppercase letter and 1 special character")
     private String password;
 
+    private String encodedPassword;
+
     @NotEmpty(message = "Please enter your Confirm Password")
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,12}$",message = "Password must be 6-12 characters in length and must contain at least 1 uppercase letter and 1 special character")
     private String confirmPassword;
 
     private boolean agree;
 
+    private Date lastLoginData;
 
-    private String role = "user";
+
+    private String role;
 
     public boolean isPwEqualToCheckPw() {
         return password.equals(confirmPassword);
@@ -110,6 +115,28 @@ public class User {
 
     public String getRole(){
         return role;
+    }
+
+    public void setRole(String role){
+        this.role = role;
+    }
+
+    public String getEncodedPassword(){
+        return this.encodedPassword;
+    }
+
+    public void setEncodedPassword(String encodedPassword){
+        this.encodedPassword = encodedPassword;
+    }
+
+    public long getId() { return id; }
+
+    public void setLastLoginDate(Date lastLoginData){
+        this.lastLoginData = lastLoginData;
+    }
+
+    public Date getLastLoginData(){
+        return lastLoginData;
     }
 
 }

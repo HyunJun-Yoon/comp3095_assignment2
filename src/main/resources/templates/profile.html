@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <style>
+        #wrap{
+            width:530px;
+            text-align:center;
+        }
+
+        table{
+            border:3px solid;
+            width: 600px;
+            height: 200px;
+        }
+
+        td{
+            border:1px solid lightgrey;
+            font-size: 20px;
+        }
+        #inputDec{
+            text-align:center;
+            width:200px; height:50px;
+        }
+
+        #title{
+            background-color:lightgrey;
+        }
+        span{
+            color: red;
+        }
+        #divLeft{
+            width: 40%;
+            float: left;
+            margin-left: 200px;
+        }
+        #divRight{
+            width: 45%;
+            float: left;
+            margin-right: 10px;
+        }
+        .container{
+            height: 500px;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+        .container form{
+            width: 100%;
+        }
+
+
+    </style>
+
+</head>
+<div th:replace="header :: myheader"></div>
+<title>My Profile</title>
+<body>
+<div id="divLeft">
+    <br><br>
+    <b ><font size="8" color="gray"  style="color: #333333">Add/Edit Profile</font></b>
+    <br><br><br>
+    <form th:action="@{/profile}" method="post" modelAttribute="profile">
+        <table border="1" width="500" cellpadding="5" cellspacing="0" >
+            <tr>
+                <td id="title">Frist Name</td>
+                <td id="inputDec">
+                    <input type="text" name="firstName" th:value="${profile.firstName}" />
+                    <span th:text="${valid_firstName}"></span>
+                </td>
+                <td id="title">Last Name</td>
+                <td id="inputDec">
+                    <input type="text" name="lastName" th:value="${profile.lastName}" />
+                    <span th:text="${valid_lastName}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Address</td>
+                <td id="inputDec">
+                    <input type="text" name="address" th:value="${profile.address}" />
+                    <span th:text="${valid_address}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Email</td>
+                <td id="inputDec">
+                    <input type="text" name="email" th:value="${profile.email}" />
+                    <span th:text="${valid_email}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Date of Birth</td>
+                <td id="inputDec">
+                    <input type="date" name="dob" th:value="${profile.dob}" />
+                    <span th:text="${valid_dob}">
+                </td>
+            </tr>
+            <tr>
+                <td id="title">City</td>
+                <td id="inputDec">
+                    <input type="text" name="city" th:value="${profile.city}"  />
+                    <span th:text="${valid_city}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Country</td>
+                <td id="inputDec">
+                    <input type="text" name="country" th:value="${profile.country}"  />
+                    <span th:text="${valid_country}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Postal</td>
+                <td id="inputDec">
+                    <input type="text" name="postal" th:value="${profile.postal}"  />
+                    <span th:text="${valid_postal}"></span>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <label>
+            <input type="checkbox"  name="agree"/>
+            Default Billing Address
+        </label>
+        <br>
+        <span th:text="${valid_agree}"></span>
+        <br>
+        <label>
+            <input type="checkbox"  name="agree"/>
+            Default Shipping Address
+        </label>
+        <br>
+        <span th:text="${valid_agree}"></span>
+        <br>
+
+        <input id="inputDec" type="submit" value="Add/Update"/>
+    </form>
+</div>
+<br><br>
+<b ><font size="8" color="gray" style="color: #333333">List Existing Profile</font></b>
+<div id="divRight" class="container">
+    <br><br>
+        <th:block th:each="profile: ${profiles}">
+        <table border="1" width="500" cellpadding="5" cellspacing="0">
+            <tr>
+                <td id="title">Email</td>
+                <td id="inputDec">
+                    <a th:text="${profile.getEmail()}" />
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Address</td>
+                <td id="inputDec">
+                    <a th:text="${profile.getAddress()}" />
+                </td>
+            </tr>
+            <tr>
+                <td id="title">City</td>
+                <td id="inputDec">
+                    <a th:text="${profile.getCity()}" />
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Country</td>
+                <td id="inputDec">
+                    <a th:text="${profile.getCountry()}" />
+                </td>
+            </tr>
+        </table>
+        </th:block>
+</div>
+</body>
+</html>

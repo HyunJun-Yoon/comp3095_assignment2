@@ -1,19 +1,112 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <div th:replace="header :: myheader"></div>
-    <title>Dashboard</title>
-</head>
+<style>
+    #wrap{
+        width:530px;
+        text-align:center;
+    }
+
+    table{
+        border:3px solid;
+        width: 600px;
+        height: 200px;
+    }
+
+    td{
+        border:1px solid lightgrey;
+        font-size: 20px;
+    }
+    #inputDec{
+        text-align:center;
+        width:200px; height:50px;
+    }
+
+    #title{
+        background-color:lightgrey;
+    }
+    span{
+        color: red;
+    }
+    #divLeft{
+        width: 40%;
+        float: left;
+        margin-left: 250px;
+    }
+    #divRight{
+        width: 40%;
+        float: left;
+        margin-right: 10px;
+    }
+
+
+</style>
+<div th:replace="header :: myheader"></div>
+<title>Dashboard</title>
+<h2 style="text-align:center;">DASHBOARD</h2>
 <body>
-    <h2 id="header2one">DASHBOARD</h2>
-    <section id="container1">
-        <section id="sec1">
-            <div class="div1" >Future Enhancement</div>
-        </section>
-        <section id="sec2">
-            <div class="div2" >Future Enhancement</div>
-            <div class="div3" >Future Enhancement</div>
-        </section>
-    </section>
+<div id="divLeft">
+
+    <br><br><br>
+
+    <th:block >
+        <table>
+            <thead><th><td><strong>Recent Activity</strong></td></th></thead>
+        </table>
+    </th:block>
+</div>
+
+<div id="divRight">
+<br><br><br>
+
+    <th:block th:each="user: ${users}">
+        <table>
+            <tr><td><strong>Current Profile</strong></td></tr>
+            <tr>
+                <td id="title">First Name:</td>
+                <td id="inputDec">
+                    <a th:text="${user.getFirstName()}"/>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Last Name:</td>
+                <td id="inputDec">
+                    <a <a th:text="${user.getLastName()}"/>
+                </td>
+            </tr>
+            <tr>
+                <td id="title">Email:</td>
+                <td id="inputDec">
+                    <a th:text="${user.getEmail()}"/>
+                </td>
+            </tr>
+            <th:block th:each="profile: ${profiles}">
+                <tr>
+                    <td id="title">Date of Birth:</td>
+                    <td id="inputDec">
+                        <a th:text="${profile.getDob()}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="title">Address:</td>
+                    <td id="inputDec">
+                        <a th:text="${profile.getAddress()}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="title">City:</td>
+                    <td id="inputDec">
+                        <a th:text="${profile.getCity()}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="title">Country:</td>
+                    <td id="inputDec">
+                        <a th:text="${profile.getCountry()}"/>
+                    </td>
+                </tr>
+            </th:block>
+        </table>
+    </th:block>
+</div>
 </body>
 </html>

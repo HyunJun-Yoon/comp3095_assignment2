@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.data.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,9 @@ import java.util.Map;
 @Service
 @AllArgsConstructor
 public class UserService {
+
+    UserRepository userRepository;
+
     public Map<String, String> validateHandling(Errors errors, boolean check){
         Map<String, String> validatorResult = new HashMap<>();
         if(errors.hasErrors()) {
@@ -31,4 +36,5 @@ public class UserService {
         }
         return validatorResult;
     }
+
 }

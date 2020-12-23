@@ -1,31 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="myheader">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+
 <body>
-    <div th:fragment="myheader">
 
-        <!-- Required meta tags-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-
-        <!-- Add in CSS-->
-        <link href="../css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
-
-        <header>
-            <table id="tableLeft">
-                <tr>
-                    <th><a th:href="@{/uconstruction1}">Tab1</th>
-                    <th><a th:href="@{/uconstruction2}">Tab2</th>
-                    <th><a th:href="@{/uconstruction3}">Tab3</th>
-                    <th><a th:href="@{/uconstruction4}">Tab4</th>
-                    <th>Welcome, <a th:text=${user.firstName}></th>
-                    <th><form th:action="@{/logout}" method="post">
-                            <input type="submit" value="Logout" />
-                        </form>
-                    </th>
-                    <a href="javascript: document.logoutForm.submit()" role="menuitem"></a>
-                </tr>
-            </table>
-        </header>
-    </div>
+<div class="topnav">
+    <a th:href="@{/profile}">My Profile</a>
+    <a th:href="@{/dashboard}">Dash Board</a>
+    <a th:href="@{/uconstruction3}">Inbox</a>
+    <a th:href="@{/uconstruction4}">Support</a>
+    <a>Welcome, <a sec:authentication="name"/> <a th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}" th:text=" ADMIN"/></a>
+    <a>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" />
+    </form>
+    </a>
+    <a href="javascript: document.logoutForm.submit()" role="menuitem"></a>
+</div>
 </body>
+</div>
 </html>
+<!--</html>-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--    <div th:fragment="myheader">-->
+<!--        &lt;!&ndash; Required meta tags&ndash;&gt;-->
+<!--        <meta charset="UTF-8">-->
+<!--        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">-->
+
+<!--        &lt;!&ndash; Add in CSS&ndash;&gt;-->
+<!--        <link href="../css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />-->
+
+<!--        <header>-->
+<!--            <table>-->
+<!--                <tr>-->
+<!--                    <th><a th:href="@{/profile}">My Profile</th>-->
+<!--                    <th><a th:href="@{/dashboard}">Dash Board</th>-->
+<!--                    <th><a th:href="@{/uconstruction3}">Tab3</th>-->
+<!--                    <th><a th:href="@{/uconstruction4}">Tab4</th>-->
+<!--                   <th>Welcome, <a sec:authentication="name"/> <a th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ADMIN')}" th:text=" ADMIN"/> </th>-->
+
+<!--                    <th><form th:action="@{/logout}" method="post">-->
+<!--                            <input type="submit" value="Logout" />-->
+<!--                        </form>-->
+<!--                    </th>-->
+<!--                    <a href="javascript: document.logoutForm.submit()" role="menuitem"></a>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </header>-->
+<!--    </div>-->
+<!--</html>-->
